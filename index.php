@@ -23,54 +23,88 @@
 
               <a href="create-task.php" style="float: right;" class="btn btn-primary">Add Task</a>
 
-              <!-- Table with stripped rows -->
+              <!-- Start Show Table -->
                 <table class="table datatable">
-                  <thead>
-                    <tr>
-                      <th class="col">Title</th>
-                      <th class="col">Description</th>
-                      <th class="col">Priority</th>
-                      <th class="col">Due Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                      $query = "SELECT * FROM `tasks`";
-                      $query_run = mysqli_query($con, $query);
-
-                      if(mysqli_num_rows($query_run) > 0){
-                          foreach($query_run as $row)
-                        {
-                    ?>
-                        <tr>
-                          <td><?= $row['title']; ?></td>
-                          <td><?= $row['description']; ?></td>
-                          <td><?= $row['priority']; ?></td>
-                          <td><?= $row['dueDate']; ?></td>
-                          <td>
-                            <a type="button" class="btn btn-outline-primary" href="view.php?id=<?=$row['id'];?>">VIEW</a>
-                            <a type="button" class="btn btn-outline-warning" href="update.php?id=<?=$row['id'];?>" id="updateButton">UPDATE</a>
-                            <form action="process.php" method="POST">
-                              <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                              <button type="submit" class="btn btn-outline-danger">DELETE</button>
-                            </form>
-                          </td>
-                        </tr>
-                    <?php
-                      } 
-                      } 
-                        else
-                      {
-                    ?>
+                  <!-- Start Showing Table Head -->
+                    <thead>
                       <tr>
-                        <td colspan="6">No Record Found</td>
+                        <th class="col">Title</th>
+                        <th class="col">Description</th>
+                        <th class="col">Priority</th>
+                        <th class="col">Due Date</th>
                       </tr>
-                    <?php
-                      }
-                    ?>
-                  </tbody>
-                </table>
-              <!-- End Table with stripped rows -->
+                    </thead>
+                  <!-- End Showing Table Head -->
+
+                    <tbody>
+
+                      <!-- Start Initializing Tasks and Compress it.-->
+                        <?php
+                          $query = "SELECT * FROM `tasks`";
+                          $query_run = mysqli_query($con, $query);
+
+                          if(mysqli_num_rows($query_run) > 0){
+                              foreach($query_run as $row)
+                            {
+                        ?>
+                      <!-- Start Initializing Tasks and Compress it.-->
+                      
+                      <!-- Start Showing Compressed file by extracting rows per row in table tasks  -->
+                          <tr>
+                            <td>
+                              <?= $row['title']; ?>
+                            </td>
+                            <td>
+                              <?= $row['description']; ?>
+                            </td>
+                            <td>
+                              <?= $row['priority']; ?>
+                            </td>
+                            <td>
+                              <?= $row['dueDate']; ?>
+                            </td>
+                            <td>
+                              
+                              <!-- Start Importing ID to view.php & update.php -->
+                                <a type="button" class="btn btn-outline-primary" href="view.php?id=<?=$row['id'];?>">
+                                  VIEW
+                                </a>
+                                <a type="button" class="btn btn-outline-warning" href="update.php?id=<?=$row['id'];?>" id="updateButton">
+                                  UPDATE
+                                </a>
+                              <!-- End Importing ID to view.php & update.php -->
+
+                              <!-- Start passing ID to process.php in handleDeleteTask -->
+                                <form action="process.php" method="POST">
+                                  <input type="hidden" name="id" value="<?= $row['id']; ?>"> <!-- the id will be pass to process.php-->
+                                  <button type="submit" class="btn btn-outline-danger" name="handleDeleteTask">
+                                    DELETE
+                                  </button>
+                                </form>
+                              <!-- End passing ID to process.php in handleDeleteTask -->
+
+                            </td>
+                          </tr>
+                      <!-- End Showing Compressed file by extracting rows per row in table tasks  -->
+
+                      <!-- Start show Error if no result -->
+                        <?php
+                          } 
+                          } 
+                            else
+                          {
+                        ?>
+                          <tr>
+                            <td colspan="6">No Record Found</td>
+                          </tr>
+                        <?php
+                          }
+                        ?>
+                      <!-- End show Error if no result -->
+                      
+                    </tbody>
+                  </table>
+              <!-- End Show Table -->
 
             </div>
           </div>

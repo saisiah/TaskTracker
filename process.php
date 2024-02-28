@@ -42,14 +42,42 @@
         // Start running query to database
             $update_query = "UPDATE `tasks` SET `title`='$title',`description`='$description',`priority`='$priority',`dueDate`='$dueDate' WHERE `id` = '$id'";
 
-            $update_query_result = mysqli_query($con, $update_query);
+            $update_query_result = mysqli_query($con, $update_query); // -> Shows result
         // End Running query to database
+
+        // Start show result
+            if($update_query_result){
+                $_SESSION['status'] = "Task Updated";
+                $_SESSION['status_code'] = "Success";
+                header("Location: index.php");
+                exit();
+            }
+        // End show result
     }
 // End Update Task
-
 
 // Start Delete Function
     if(isset($_POST['handleDeleteTask'])){
         // Start Importing Variables
+            $id = $_POST['id'];
+        // End Importing Variables
+
+        // Start running delete query
+            $delete_query = "DELETE FROM `tasks` WHERE `id` = '$id'";
+        // End running delete query
+
+        // Start checking result
+            $delete_query_result = mysqli_query($con, $delete_query);
+        // End checking result
+
+        // Start show result
+            if($delete_query_result){
+                $_SESSION['status'] = "Task Deleted";
+                $_SESSION['status_code'] = "Success";
+                header("Location: index.php");
+                exit();
+            };
+        // End show result
+
     }
 ?>
