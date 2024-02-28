@@ -60,8 +60,9 @@ include ("config.php");
                                     <label for="dueDate" class="form-label">Due Date</label>
                                     <input type="date" class="form-control" value="<?=$task['dueDate'];?>" id="dueDate" name="dueDate">
                                 </div>
-                                <div class="col-md-12 mb-3 text-center">
-                                    <button type="submit" class="btn btn-primary" style="float: right;" name="handleUpdateTask">Submit</button>
+                                <div class="col-md-12 mb-3 text-center" style=" justify-content: space-between; display: flex;">
+                                    <a class="btn btn-primary" style="float: right;" href="index.php">Go Back</a>
+                                <button type="submit" class="btn btn-primary" name="handleAddTask" style="float: right;">Submit</button>
                                 </div>
                             </div>
                         </form>
