@@ -31,7 +31,7 @@ include ("config.php");
                     foreach($update_tasks_query_result as $task)
                     {
         ?>
-                        <form action="update.php" method="POST">
+                        <form action="process.php" method="POST">
                             <input type="hidden" name="id" value="<?=$task['id'];?>">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
