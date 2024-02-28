@@ -61,7 +61,7 @@ include ("config.php");
                                     <input type="date" class="form-control" value="<?=$task['dueDate'];?>" id="dueDate" name="dueDate">
                                 </div>
                                 <div class="col-md-12 mb-3 text-center">
-                                    <button type="submit" class="btn btn-primary"  style="float: right;" name="handleUpdateTask">Submit</button>
+                                    <button type="submit" class="btn btn-primary" style="float: right;" name="handleUpdateTask">Submit</button>
                                 </div>
                             </div>
                         </form>

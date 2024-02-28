@@ -52,7 +52,7 @@ include ("config.php");
                         </div>
 
                         <div class="col-md-4 mb-3">
-                        <a class="btn btn-primary" href="index.php">Go Back</a>
+                        <a class="btn btn-primary" style="float: right;" href="index.php">Go Back</a>
                         </div>
 
 
