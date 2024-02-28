@@ -5,6 +5,7 @@
 
 // Start Add Task Function
     if(isset($_POST["handleAddTask"])){
+
         // Start Importing Variables
             $title = $_POST['title'];
             $description = $_POST['description'];
@@ -21,15 +22,16 @@
             if($add_tasks_query_result){
                 $_SESSION['status'] = "Task Added Successfully!";
                 $_SESSION['status_code'] = "success";
-                header("Location: create-task.php");
+                header("Location: create_task.php");
                 exit();
             }
         // Start show result if success or failure
+        
     }
 // End add task
 
 // Start Update Task Function
-    if(isset($_POST["handleUpdateTask"])){
+    if(isset($_POST['handleUpdateTask'])){
 
         // Start Importing Variables
             $id = $_POST['id'];
@@ -51,9 +53,10 @@
                 $_SESSION['status_code'] = "Success";
                 header("Location: index.php");
                 exit();
-            }
+            };
         // End show result
-    }
+
+    };
 // End Update Task
 
 // Start Delete Function
@@ -79,5 +82,5 @@
             };
         // End show result
 
-    }
+    };
 ?>

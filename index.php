@@ -21,7 +21,7 @@
             <div class="card-body">
               <h5 class="card-title">Task Tracker</h5>
 
-              <a href="create-task.php" style="float: right;" class="btn btn-primary">Add Task</a>
+              <a href="create_task.php" style="float: right;" class="btn btn-primary">Add Task</a>
 
               <!-- Start Show Table -->
                 <table class="table datatable">
@@ -70,10 +70,10 @@
                               <td class="action-button">
                                 
                                 <!-- Start Importing ID to view.php & update.php if pressed -->
-                                  <a type="button" class="btn btn-outline-primary spacing" href="view.php?id=<?=$row['id'];?>">
+                                  <a type="button" class="btn btn-outline-primary spacing" href="view_task.php?id=<?=$row['id'];?>">
                                     VIEW
                                   </a>
-                                  <a type="button" class="btn btn-outline-warning spacing" href="update.php?id=<?=$row['id'];?>" id="updateButton">
+                                  <a type="button" class="btn btn-outline-warning spacing" href="edit_task.php?id=<?=$row['id'];?>" id="updateButton">
                                     UPDATE
                                   </a>
                                 <!-- End Importing ID to view.php & update.php if pressed -->
@@ -81,9 +81,9 @@
                                 <!-- Start passing ID to process.php in handleDeleteTask -->
                                   <form action="process.php" method="POST">
                                     <input type="hidden" name="id" value="<?= $row['id'];?>"> <!-- the id will be pass to process.php-->
-                                    <button type="submit" class="btn btn-outline-danger spacing" name="handleDeleteTask">
-                                      DELETE
-                                    </button>
+                                    <?php 
+                                      include ("delete_task.php");
+                                    ?>
                                   </form>
                                 <!-- End passing ID to process.php in handleDeleteTask -->
 
