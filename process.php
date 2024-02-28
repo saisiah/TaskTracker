@@ -50,6 +50,6 @@
 
 // Start Delete Function
     if(isset($_POST['handleDeleteTask'])){
-        
+        // Start Importing Variables
     }
 ?>

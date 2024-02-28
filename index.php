@@ -1,5 +1,5 @@
 <?php session_start();
-include ("config.php");
+  include ("config.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,7 +47,6 @@ include ("config.php");
                           <td><?= $row['description']; ?></td>
                           <td><?= $row['priority']; ?></td>
                           <td><?= $row['dueDate']; ?></td>
-
                           <td>
                             <a type="button" class="btn btn-outline-primary" href="view.php?id=<?=$row['id'];?>">VIEW</a>
                             <a type="button" class="btn btn-outline-warning" href="update.php?id=<?=$row['id'];?>" id="updateButton">UPDATE</a>
@@ -56,9 +55,7 @@ include ("config.php");
                               <button type="submit" class="btn btn-outline-danger">DELETE</button>
                             </form>
                           </td>
-
                         </tr>
-
                     <?php
                       } 
                       } 
