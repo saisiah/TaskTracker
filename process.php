@@ -1,91 +1,55 @@
 <?php
-session_start();    
-include("config.php");
+    session_start();    
+    include("config.php");
 
 
-if(isset($_POST["createButton"])){
+// Start Add Task Function
+    if(isset($_POST["handleAddTask"])){
+        // Start Importing Variables
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $priority = $_POST['priority'];
+            $dueDate = $_POST['dueDate'];
+        // End Importing Variables
+        
+        // Start running query to database
+            $add_tasks_query = "INSERT INTO `tasks`(`title`, `description`, `priority`, `dueDate`) VALUES ('$title','$description','$priority','$dueDate')";
+            $add_tasks_query_result = mysqli_query($con, $add_tasks_query);
+        // End running query to database
 
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $priority = $_POST['priority'];
-    $dueDate = $_POST['dueDate'];
-
-    $insert = "INSERT INTO `tasks`(`title`, `description`, `priority`, `dueDate`) VALUES ('$title','$description','$priority','$priority','$dueDate')";
-    $login_result = mysqli_query($con, $insert);
-
-    if($login_result){
-            $_SESSION['status'] = "Welcome!";
-            $_SESSION['status_code'] = "success";
-            header("Location: index.php");
-            exit();
-    }else{
-        $_SESSION['status'] = "Lacking input";
-        $_SESSION['status_code'] = "error";
-        header("Location: createTask.php");
-        exit();
+        // Start show result if success or failure
+            if($add_tasks_query_result){
+                $_SESSION['status'] = "Task Added Successfully!";
+                $_SESSION['status_code'] = "success";
+                header("Location: create-task.php");
+                exit();
+            }
+        // Start show result if success or failure
     }
-}
+// End add task
 
+// Start Update Task Function
+    if(isset($_POST["handleUpdateTask"])){
 
-if(isset($_POST["addTask"])){
+        // Start Importing Variables
+            $id = $_POST['id'];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $priority = $_POST['priority'];
+            $dueDate = $_POST['dueDate'];
+        // End Importing Variables
 
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $priority = $_POST['priority'];
-    $dueDate = $_POST['dueDate'];
+        // Start running query to database
+            $update_query = "UPDATE `tasks` SET `title`='$title',`description`='$description',`priority`='$priority',`dueDate`='$dueDate' WHERE `id` = '$id'";
 
-    $check_email_query = "SELECT * FROM `task` WHERE `email` = '$email'";
-    $email_result = mysqli_query($con,$check_email_query);
-    $email_count = mysqli_fetch_array($email_result)[0];
-
-    if($email_count > 0){
-        $_SESSION['status'] = "Email address already taken";
-        $_SESSION['status_code'] = "error";
-        header("Location: register.php");
-        exit();
+            $update_query_result = mysqli_query($con, $update_query);
+        // End Running query to database
     }
+// End Update Task
 
-    if ($password !== $repassword){
-        $_SESSION['status'] = "Password does not match";
-        $_SESSION['status_code'] = "error";
-        header("Location: register.php");
-        exit();
+
+// Start Delete Function
+    if(isset($_POST['handleDeleteTask'])){
+        
     }
-
-
-    $query = "INSERT INTO `user`(`email`, `password`, `fname`, `mname`, `lname`) VALUES ('$email','$password','$fname','$mname','$lname')";
-    $query_result = mysqli_query( $con, $query );
-
-    if($query_result){
-        $_SESSION['status'] = "Registration Sucess!";
-        $_SESSION['status_code'] = "success";
-        header("Location: login.php");
-        exit();
-    }
-}
-
-
-if(isset($_POST["createButton"])){
-
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $priority = $_POST['priority'];
-    $dueDate = $_POST['dueDate'];
-
-    $insert = "INSERT INTO `tasks`(`title`, `description`, `priority`, `dueDate`) VALUES ('$title','$description','$priority','$priority','$dueDate')";
-    $login_result = mysqli_query($con, $insert);
-
-    if($login_result){
-            $_SESSION['status'] = "Welcome!";
-            $_SESSION['status_code'] = "success";
-            header("Location: index.php");
-            exit();
-    }else{
-        $_SESSION['status'] = "Invalid Username/Password";
-        $_SESSION['status_code'] = "error";
-        header("Location: editTask.php");
-        exit();
-    }
-}
-
 ?>

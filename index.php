@@ -21,65 +21,62 @@ include ("config.php");
             <div class="card-body">
               <h5 class="card-title">Task Tracker</h5>
 
-              <a href="createTask.php" style="float: right;" class="btn btn-primary">Add Task</a>
+              <a href="create-task.php" style="float: right;" class="btn btn-primary">Add Task</a>
+
               <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th class="col">Title</th>
-                    <th class="col">Description</th>
-                    <th class="col">Priority</th>
-                    <th class="col">Due Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-
-                <?php
-                $query = "SELECT * FROM `tasks`";
-                $query_run = mysqli_query($con, $query);
-                if(mysqli_num_rows($query_run) > 0)
-                {
-                foreach($query_run as $row)
-                {
-                ?>
+                <table class="table datatable">
+                  <thead>
                     <tr>
-                <td><?= $row['title']; ?></td>
-                <td><?= $row['description']; ?></td>
-                <td><?= $row['priority']; ?></td>
-                <td><?= $row['dueDate']; ?></td>
-
-                <td>
-
-                <a type="button" class="btn btn-outline-primary" href="view.php?id=<?=$row['id'];?>">VIEW</a>
-                <a type="button" class="btn btn-outline-warning" href="update.php?id=<?=$row['id'];?>">UPDATE</a>
-                
-                <form action="process.php" method="POST">
-                <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                <button type="submit" class="btn btn-outline-danger">DELETE</button>
-                </form>
-              </td>
+                      <th class="col">Title</th>
+                      <th class="col">Description</th>
+                      <th class="col">Priority</th>
+                      <th class="col">Due Date</th>
                     </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $query = "SELECT * FROM `tasks`";
+                      $query_run = mysqli_query($con, $query);
+
+                      if(mysqli_num_rows($query_run) > 0){
+                          foreach($query_run as $row)
+                        {
+                    ?>
+                        <tr>
+                          <td><?= $row['title']; ?></td>
+                          <td><?= $row['description']; ?></td>
+                          <td><?= $row['priority']; ?></td>
+                          <td><?= $row['dueDate']; ?></td>
+
+                          <td>
+                            <a type="button" class="btn btn-outline-primary" href="view.php?id=<?=$row['id'];?>">VIEW</a>
+                            <a type="button" class="btn btn-outline-warning" href="update.php?id=<?=$row['id'];?>" id="updateButton">UPDATE</a>
+                            <form action="process.php" method="POST">
+                              <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                              <button type="submit" class="btn btn-outline-danger">DELETE</button>
+                            </form>
+                          </td>
+
+                        </tr>
 
                     <?php
-                } 
-                } else
-                {
-                ?>
-                <tr>
-                <td colspan="6">No Record Found</td>
-                </tr>
-                <?php
-                }
-                ?>
-
-                </tbody>
-              </table>
+                      } 
+                      } 
+                        else
+                      {
+                    ?>
+                      <tr>
+                        <td colspan="6">No Record Found</td>
+                      </tr>
+                    <?php
+                      }
+                    ?>
+                  </tbody>
+                </table>
               <!-- End Table with stripped rows -->
 
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -87,7 +84,7 @@ include ("config.php");
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
 

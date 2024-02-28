@@ -20,60 +20,48 @@ include ("config.php");
         <div class="col-lg-9">
 
         <?php
-        if(isset($_GET['id']))
-        {
-            $id = $_GET['id'];
-            $users = "SELECT * FROM `student` WHERE `id` = '$id'";
-            $users_run = mysqli_query($con, $users);
-
-            if(mysqli_num_rows($users_run) > 0)
+            if(isset($_GET['id']))
             {
-                foreach($users_run as $user)
+                $id = $_GET['id'];
+                $users = "SELECT * FROM `tasks` WHERE `id` = '$id'";
+                $users_run = mysqli_query($con, $users);
+
+                if(mysqli_num_rows($users_run) > 0)
                 {
-                ?>
-
+                    foreach($users_run as $user)
+                    {
+        ?>
             <form action="update.php" method="POST">
-
-            <input type="hidden" name="id" value="<?=$user['id'];?>">
-
+                <input type="hidden" name="id" value="<?=$user['id'];?>">
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="studentId" class="form-label">Student I.D</label>
-                        <input type="text" class="form-control" id="studentId" value="<?=$user['student_number'];?>" name="studentid">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" value="<?=$user['title'];?>" name="title">
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName">
+                        <label for="description" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="description" value="<?=$user['description'];?>" name="description">
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="middlename" class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" id="middlename" name="middlename">
+                        <label for="priority" class="form-label">
+                            Priority
+                        </label>
+                        <select name="priority" id="priority" class="form-control">
+                            <option value="" disabled selected>Current Priority: <?=$user['priority'];?></option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName">
+                        <label for="dueDate" class="form-label">Due Date</label>
+                        <input type="date" class="form-control" value="<?=$user['dueDate'];?>" id="dueDate" name="dueDate">
                     </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="dateOfBirth" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="text" class="form-control" id="email" name="email">
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="phoneNumber" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
-                    </div>
-
                     <div class="col-md-12 mb-3 text-center">
-                        <button type="submit" class="btn btn-primary"  style="float: right;" name="submit">Submit</button>
+                        <button type="submit" class="btn btn-primary"  style="float: right;" name="handleUpdateTask">Submit</button>
                     </div>
                 </div>
             </form>
