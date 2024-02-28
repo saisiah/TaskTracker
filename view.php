@@ -48,7 +48,7 @@ include ("config.php");
                                     <label for="priority" class="form-label">
                                         Priority
                                     </label>
-                                    <select name="priority" id="priority" class="form-control">
+                                    <select name="priority" id="priority" class="form-control" disabled>
                                         <option value="" disabled selected>Current Priority: <?=$task['priority'];?></option>
                                         <option value="Low">Low</option>
                                         <option value="Medium">Medium</option>
