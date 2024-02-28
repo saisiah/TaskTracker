@@ -13,3 +13,12 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+.action-button{
+    display: flex;
+    flex-direction: row;
+}
+
+.spacing{
+    margin-left: 5px;
+}
