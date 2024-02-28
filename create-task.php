@@ -51,7 +51,11 @@ include ("config.php");
                             <button type="submit" class="btn btn-primary" name="handleAddTask" style="float: right;">Submit</button>
                         </div>
 
-                        <a href="index.php">Go Back</a>
+                        <div class="col-md-4 mb-3">
+                        <a class="btn btn-primary" href="index.php">Go Back</a>
+                        </div>
+
+
                         
                     </div>
                 </form>
